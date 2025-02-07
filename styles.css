@@ -1,0 +1,90 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: url('image2.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    text-align: center;
+}
+
+.header {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.search-box {
+    width: 60%;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.315);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.search-box:focus {
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+/* Glassmorphism Effect */
+.movie-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.movie-card {
+    width: 200px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: left;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.movie-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.movie-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #caae8a;
+    font-family: initial;
+}
+
+.movie-card p {
+    font-size: 14px;
+    color: #181816;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- <div class="container">
+        <div class="header">
+            <input type="text" class="search-box" placeholder="Search Movies...">
+        </div>
+        <h1 class="value"></h1>
+         -->
+         <div class="container">
+            <div class="header">
+                <input type="text" class="search-box" placeholder="Search Movies..." onkeyup="searchMovies()">
+            </div>
+    
+            <h1 class="value"></h1>
+            
+            <div class="movie-list" id="movie-list">
+                <!-- Movie cards will be displayed here -->
+            </div>
+        </div>
+        <div class="movie-list">
+            <div class="movie-card">
+                <img src="image2.png" alt="Movie Poster">
+                <h3>Fire</h3>
+                <p>Some description about the movie.</p>
+            </div>
+            <div class="movie-card">
+                <img src="action.png" alt="Movie Poster">
+                <h3>Action</h3>
+                <p>Some description about the movie.</p>
+            </div>
+            <div class="movie-card">
+                <img src="colud atlas.png" alt="Movie Poster">
+                <h3>colud atlas</h3>
+                <p>Some description about the movie.</p>
+            </div>
+            <div class="movie-card">
+                <img src="thelion.png" alt="Movie Poster">
+                <h3>The lion king</h3>
+                <p>Some description about the movie.</p>
+            </div>
+            <div class="movie-card">
+                <img src="The donkey.png" alt="Movie Poster">
+                <h3>The Donkey King</h3>
+                <p>Some description about the movie.</p>
+            </div>
+            <div class="movie-card">
+                <img src="john.png" alt="Movie Poster">
+                <h3>John Wish</h3>
+                <p>Some description about the movie.</p>
+            </div>
+            <div class="movie-card">
+                <img src="name king.png" alt="Movie Poster">
+                <h3>name of the king</h3>
+                <p>Some description about the movie.</p>
+            </div>
+            <div class="movie-card">
+                <img src="Two.png" alt="Movie Poster">
+                <h3>Kcoren Beem</h3>
+                <p>Some description about the movie.</p>
+            </div>
+            <!-- More Movie Cards can be added here -->
+        </div>
+    </div>
+</body>
+<script>
+    // Movie Data (Simulating a JSON object as it's provided in your code)
+    const movieData = {
+        "movies": [
+            {
+                "Title": "The Lion King",
+                "Year": "2019",
+                "Runtime": "118 min",
+                "Poster": "https://m.media-amazon.com/images/M/MV5BMjIwMjE1Nzc4NV5BMl5BanBnXkFtZTgwNDg4OTA1NzM@._V1_SX300.jpg"
+            },
+            {
+                "Title": "Fire",
+                "Year": "2018",
+                "Runtime": "104 min",
+                "Poster": "https://m.media-amazon.com/images/M/MV5BMjMzODc2NzU5MV5BMl5BanBnXkFtZTgwNTMwMTE3NjM@._V1_SX300.jpg"
+            },
+            {
+                "Title": "Doctor Strange",
+                "Year": "2016",
+                "Runtime": "115 min",
+                "Poster": "https://m.media-amazon.com/images/M/MV5BNjgwNzAzNjk1Nl5BMl5BanBnXkFtZTgwMzQ2NjI1OTE@._V1_SX300.jpg"
+            },
+            {
+                "Title": "Action",
+                "Year": "2014",
+                "Runtime": "101 min",
+                "Poster": "https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_SX300.jpg"
+            },
+            {
+                "Title": "The Donkey King",
+                "Year": "2023",
+                "Runtime": "160 min",
+                "Poster": "https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_SX300.jpg"  // Assuming there is an image URL
+            },
+            {
+                "Title": "The Donkey King",
+                "Year": "2004",
+                "Runtime": "123 min",
+                "Poster": "https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_SX300.jpg"
+            },
+            {
+                "Title": "Cloud Atlas",
+                "Year": "2004",
+                "Runtime": "123 min",
+                "Poster": "https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_SX300.jpg"
+            },
+            {
+                "Title": "John Wick",
+                "Year": "2004",
+                "Runtime": "123 min",
+                "Poster": "https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_SX300.jpg"
+            },
+            {
+                "Title": "Kcoren Beem",
+                "Year": "2004",
+                "Runtime": "167 min",
+                "Poster": "https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_SX300.jpg"
+            }
+        ]
+    };
+
+    function searchMovies() {
+        const searchQuery = document.querySelector(".search-box").value.toLowerCase();
+        const movieList = document.getElementById("movie-list");
+        movieList.innerHTML = ''; // Clear previous results
+
+        const filteredMovies = movieData.movies.filter(movie => movie.Title.toLowerCase().includes(searchQuery));
+
+        if (filteredMovies.length === 0) {
+            movieList.innerHTML = "<p>No movies found</p>";
+        } else {
+            filteredMovies.forEach(movie => {
+                const movieCard = document.createElement("div");
+                movieCard.classList.add("movie-card");
+                movieCard.innerHTML = `
+                    <img src="${movie.Poster}" alt="Movie Poster">
+                    <h3>${movie.Title}</h3>
+                    <p>${movie.Runtime}</p>
+                `;
+                movieList.appendChild(movieCard);
+            });
+        }
+    }
+</script>
+</body>
+</html>
+
+</html>
